@@ -1,6 +1,5 @@
-package com.chandra.web2android.ui.theme
+package com.chandra.web2android.presentation.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -51,8 +50,8 @@ fun Web2AndroidTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
+        colorScheme = LightColorScheme,
+        typography = AppTypography,
         content = content
     )
 }
