@@ -26,5 +26,11 @@ val AppTypography = Typography(
         fontFamily = FontFamily(Font(R.font.outfit_regular)),
         color = Color.White,
         textAlign = TextAlign.Center
+    ),
+    bodyLarge = TextStyle(
+        fontSize = 20.sp,
+        fontFamily = FontFamily(Font(R.font.outfit_regular)),
+        color = Color.White,
+        textAlign = TextAlign.Center
     )
 )

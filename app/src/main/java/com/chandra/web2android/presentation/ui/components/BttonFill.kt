@@ -22,10 +22,10 @@ private fun ButtonFilledPrev() {
 fun ButtonFilled(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Button(
         onClick = { onClick() },
-        colors = ButtonDefaults.buttonColors(containerColor = Colors.Violet),
+        colors = ButtonDefaults.buttonColors(containerColor = Colors.DeepBlue),
         modifier = modifier
             .fillMaxWidth(1f)
-            .padding(6.dp)
+            .padding(12.dp)
     ) {
         Text(text = text, style = MaterialTheme.typography.titleLarge)
     }
