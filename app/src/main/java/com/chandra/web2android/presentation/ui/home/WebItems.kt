@@ -14,8 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.chandra.web2android.R
 import com.chandra.web2android.data.model.WebModel
 
 @Preview(showSystemUi = true)
@@ -33,7 +38,7 @@ fun WebItems(data: WebModel, onClick: (WebModel) -> Unit, modifier: Modifier = M
             .clickable {
                 onClick(data)
             },
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 12.dp),
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFF6F6F6)),
         shape = RoundedCornerShape(10, 0 , 80 , 0)
         ,
@@ -48,8 +53,13 @@ fun WebItems(data: WebModel, onClick: (WebModel) -> Unit, modifier: Modifier = M
             Text(
                 text = data.name,
                 style = MaterialTheme.typography.titleMedium,
+                fontFamily = FontFamily(Font(R.font.outfit_medium)),
+                fontSize = 16.sp,
                 color = Color.Black,
-                modifier = Modifier.align(Alignment.Center)
+                modifier = Modifier. fillMaxWidth()
+                    .align(Alignment.Center)
+                    .padding(0.dp, 0.dp, 16.dp, 0.dp),
+                textAlign = TextAlign.Center
             )
         }
     }

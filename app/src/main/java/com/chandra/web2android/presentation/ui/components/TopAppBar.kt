@@ -2,6 +2,7 @@ package io.poxscan.wallet.presentation.ui.wallet
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -40,7 +41,6 @@ fun TopAppBar(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(0, 0, 24, 24))
-            .background(Colors.White)
             .padding(16.dp, 12.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -48,9 +48,13 @@ fun TopAppBar(
             Image(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = "Back Button",
-                modifier = Modifier.align(
-                    Alignment.CenterStart
-                )
+                modifier = Modifier
+                    .align(
+                        Alignment.CenterStart
+                    )
+                    .clickable {
+                        onBackClick()
+                    }
             )
         }
         Text(

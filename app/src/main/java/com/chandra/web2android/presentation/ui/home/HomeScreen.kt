@@ -29,7 +29,7 @@ import io.poxscan.wallet.presentation.ui.wallet.TopAppBar
 private fun HomeScreenPrev() {
     HomeScreen(
         listOf(
-            WebModel("Test", ""),
+            WebModel("Facebook", ""),
             WebModel("Test", ""),
             WebModel("Test", ""),
         ), {}, {})
@@ -45,12 +45,11 @@ fun HomeScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp, 0.dp)
+            .padding(16.dp)
             .background(color = Color.White)
     ) {
         Column {
             TopAppBar("Saved Items", false) {
-
             }
             LazyVerticalGrid(columns = GridCells.Fixed(2)) {
                 items(listItems) { item ->

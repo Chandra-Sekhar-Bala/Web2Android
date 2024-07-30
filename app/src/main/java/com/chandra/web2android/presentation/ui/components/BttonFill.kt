@@ -25,8 +25,8 @@ fun ButtonFilled(text: String, modifier: Modifier = Modifier, onClick: () -> Uni
         colors = ButtonDefaults.buttonColors(containerColor = Colors.DeepBlue),
         modifier = modifier
             .fillMaxWidth(1f)
-            .padding(12.dp)
+            .padding(8.dp)
     ) {
-        Text(text = text, style = MaterialTheme.typography.titleLarge)
+        Text(text = text, style = MaterialTheme.typography.titleLarge, modifier =  Modifier.padding(8.dp))
     }
 }

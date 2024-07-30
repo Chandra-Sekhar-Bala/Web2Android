@@ -21,20 +21,19 @@ import io.poxscan.wallet.presentation.ui.wallet.TopAppBar
 @Preview(showSystemUi = true)
 @Composable
 private fun AddWebsitesPrev() {
-    AddWebsites()
+    AddWebsites({})
 }
 
 @Composable
-fun AddWebsites(modifier: Modifier = Modifier) {
+fun AddWebsites(onSubmitClick: () -> Unit, modifier: Modifier = Modifier) {
     Scaffold(
         topBar = {
             TopAppBar("Add Websites") {
-                // TODO: back Button click handling
             }
         },
         bottomBar = {
             ButtonFilled(text = "Add", Modifier.padding(0.dp, 16.dp)) {
-                // TODO: Add button click handling
+                onSubmitClick()
             }
         },
         content = { paddingValues ->
