@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("app.cash.sqldelight") version "2.0.1"
 }
 
 android {
@@ -72,4 +73,14 @@ dependencies {
 
     // Compose Navigation
     implementation ("androidx.navigation:navigation-compose:2.7.7")
+
+    // SQLDelight
+    implementation("app.cash.sqldelight:android-driver:2.0.1")
+}
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.chandra.web2android")
+        }
+    }
 }

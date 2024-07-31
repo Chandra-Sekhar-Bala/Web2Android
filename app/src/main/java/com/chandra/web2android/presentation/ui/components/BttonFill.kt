@@ -1,4 +1,4 @@
-package io.poxscan.wallet.presentation.ui.wallet
+package com.chandra.web2android.presentation.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

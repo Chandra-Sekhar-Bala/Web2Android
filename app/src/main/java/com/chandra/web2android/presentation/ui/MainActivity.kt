@@ -3,6 +3,7 @@ package com.chandra.web2android.presentation.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
@@ -16,18 +17,20 @@ import com.chandra.web2android.presentation.ui.utils.logThis
 import com.chandra.web2android.presentation.ui.utils.toast
 
 class MainActivity : ComponentActivity() {
+    val viewModel : MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Web2AndroidTheme {
-                App()
+                App(viewModel)
             }
         }
     }
+
 }
 
 @Composable
-fun App() {
+fun App(viewModel: MainViewModel) {
     val navController = rememberNavController()
     val context = LocalContext.current
 
@@ -48,9 +51,8 @@ fun App() {
                 })
         }
         composable(route = Routes.ADD_WEBSITE) {
-            AddWebsites(onSubmitClick = {
+            AddWebsites(viewModel, onSubmitClick = {
                 navController.navigateUp()
-                context.toast("Database integration is yet to be done!")
             }, onBackClick = {
                 navController.navigateUp()
             }

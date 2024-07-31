@@ -22,17 +22,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.poxscan.wallet.presentation.ui.wallet.ButtonFilled
+import com.chandra.web2android.presentation.ui.MainViewModel
+import com.chandra.web2android.presentation.ui.components.ButtonFilled
 import io.poxscan.wallet.presentation.ui.wallet.TopAppBar
 
 @Preview(showSystemUi = true)
 @Composable
 private fun AddWebsitesPrev() {
-    AddWebsites({}, {})
+//    AddWebsites(null, {}, {})
 }
 
 @Composable
 fun AddWebsites(
+    viewModel: MainViewModel,
     onSubmitClick: () -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -58,11 +60,12 @@ fun AddWebsites(
             ButtonFilled(
                 text = "Add",
                 modifier = Modifier
-                    .padding(16.dp) // Padding to ensure it's visible above the keyboard
-                    .imePadding(), // Adjusts padding based on keyboard visibility,
+                    .padding(16.dp)
+                    .imePadding(),
                 enabled = isButtonEnabled
             ) {
                 if (isButtonEnabled) {
+                    viewModel.saveToDB(title, webAddress)
                     onSubmitClick()
                 }
             }
