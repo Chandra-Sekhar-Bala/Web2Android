@@ -13,24 +13,21 @@ val AppTypography = Typography(
     headlineMedium = TextStyle(
         fontSize = 22.sp,
         fontFamily = FontFamily(Font(R.font.outfit_medium)),
-        color = Color.White
+        color = Color.Black
     ),
     labelMedium = TextStyle(
         fontSize = 14.sp,
         fontFamily = FontFamily(Font(R.font.outfit_regular)),
         color = Color.Gray,
-        textAlign = TextAlign.Center
     ),
     bodyMedium = TextStyle(
         fontSize = 16.sp,
         fontFamily = FontFamily(Font(R.font.outfit_regular)),
-        color = Color.White,
-        textAlign = TextAlign.Center
+        color = Color.Black,
     ),
     bodyLarge = TextStyle(
         fontSize = 20.sp,
         fontFamily = FontFamily(Font(R.font.outfit_regular)),
-        color = Color.White,
-        textAlign = TextAlign.Center
+        color = Color.Black,
     )
 )

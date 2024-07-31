@@ -69,4 +69,7 @@ dependencies {
 
     // Material icon
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
+
+    // Compose Navigation
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
 }
