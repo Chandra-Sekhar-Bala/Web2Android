@@ -1,8 +1,13 @@
 package com.chandra.web2android.presentation.ui.addWeb
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -13,6 +18,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.poxscan.wallet.presentation.ui.wallet.ButtonFilled
@@ -25,7 +32,22 @@ private fun AddWebsitesPrev() {
 }
 
 @Composable
-fun AddWebsites(onSubmitClick: () -> Unit, onBackClick: () -> Unit, modifier: Modifier = Modifier) {
+fun AddWebsites(
+    onSubmitClick: () -> Unit,
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LocalContext.current
+    val view = LocalView.current
+    val insets = WindowInsets.ime
+    var title by remember { mutableStateOf("") }
+    var webAddress by remember { mutableStateOf("") }
+    var isTitleValid by remember { mutableStateOf(false) }
+    var isWebAddressValid by remember { mutableStateOf(false) }
+    isTitleValid = title.isNotBlank()
+    isWebAddressValid = android.util.Patterns.WEB_URL.matcher(webAddress).matches()
+    val isButtonEnabled = isTitleValid && isWebAddressValid
+
     Scaffold(
         topBar = {
             TopAppBar("Add Websites") {
@@ -33,28 +55,51 @@ fun AddWebsites(onSubmitClick: () -> Unit, onBackClick: () -> Unit, modifier: Mo
             }
         },
         bottomBar = {
-            ButtonFilled(text = "Add", Modifier.padding(0.dp, 16.dp)) {
-                onSubmitClick()
+            ButtonFilled(
+                text = "Add",
+                modifier = Modifier
+                    .padding(16.dp) // Padding to ensure it's visible above the keyboard
+                    .imePadding(), // Adjusts padding based on keyboard visibility,
+                enabled = isButtonEnabled
+            ) {
+                if (isButtonEnabled) {
+                    onSubmitClick()
+                }
             }
         },
         content = { paddingValues ->
-            InputContent(Modifier.padding(paddingValues))
+            InputContent(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .navigationBarsPadding()
+                    .statusBarsPadding()
+                    .imePadding(),
+                title = title,
+                onTitleChange = { title = it },
+                webAddress = webAddress,
+                onWebAddressChange = { webAddress = it }
+            )
         }
     )
 }
 
 @Composable
-fun InputContent(modifier: Modifier) {
+fun InputContent(
+    modifier: Modifier,
+    title: String,
+    onTitleChange: (String) -> Unit,
+    webAddress: String,
+    onWebAddressChange: (String) -> Unit
+) {
     Column(
         modifier = modifier
             .fillMaxWidth(1f)
             .padding(16.dp)
     ) {
         Text(text = "Title", style = MaterialTheme.typography.bodyLarge)
-        var title by remember { mutableStateOf("") }
         OutlinedTextField(
             value = title,
-            onValueChange = { title = it },
+            onValueChange = onTitleChange,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp, 8.dp),
@@ -63,14 +108,13 @@ fun InputContent(modifier: Modifier) {
         )
 
         Text(text = "Address", style = MaterialTheme.typography.bodyLarge)
-        var webAddress by remember { mutableStateOf("") }
         OutlinedTextField(
             value = webAddress,
-            onValueChange = { webAddress = it },
+            onValueChange = onWebAddressChange,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp, 8.dp),
-            placeholder = { Text("Enter website Address") },
+            placeholder = { Text("Enter website address") },
             textStyle = MaterialTheme.typography.bodyLarge,
         )
     }
