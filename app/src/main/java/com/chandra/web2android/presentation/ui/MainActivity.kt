@@ -3,7 +3,6 @@ package com.chandra.web2android.presentation.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
@@ -15,9 +14,10 @@ import com.chandra.web2android.presentation.ui.addWeb.AddWebsites
 import com.chandra.web2android.presentation.ui.home.HomeScreen
 import com.chandra.web2android.presentation.ui.utils.logThis
 import com.chandra.web2android.presentation.ui.utils.toast
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : ComponentActivity() {
-    val viewModel : MainViewModel by viewModels()
+    private val viewModel: MainViewModel by lazy { getViewModel() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

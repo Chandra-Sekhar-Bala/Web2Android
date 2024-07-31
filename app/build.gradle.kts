@@ -76,6 +76,10 @@ dependencies {
 
     // SQLDelight
     implementation("app.cash.sqldelight:android-driver:2.0.1")
+
+    // Koin DI
+    implementation("io.insert-koin:koin-android:3.4.0")
+    implementation("io.insert-koin:koin-androidx-compose:3.4.0")
 }
 sqldelight {
     databases {
